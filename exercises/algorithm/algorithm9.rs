@@ -2,7 +2,7 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-
+// I AM NOT DONE
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -37,35 +37,8 @@ where
     }
 
     pub fn add(&mut self, value: T) {
-        self.count += 1;
-        self.items.push(value);
-        let mut idx = self.count;
-        
-        while idx > 1 {
-            let parent_idx = self.parent_idx(idx);
-            if (self.comparator)(&self.items[idx], &self.items[parent_idx]) {
-                self.items.swap(idx, parent_idx);
-                idx = parent_idx;
-            } else {
-                break;
-            }
-        }
+        //TODO
     }
-
-    fn smallest_child_idx(&self, idx: usize) -> usize {
-        let left = self.left_child_idx(idx);
-        let right = self.right_child_idx(idx);
-        
-        if right > self.count {
-            left
-        } else if (self.comparator)(&self.items[left], &self.items[right]) {
-            left
-        } else {
-            right
-        }
-    }
-
-
 
     fn parent_idx(&self, idx: usize) -> usize {
         idx / 2
@@ -82,18 +55,23 @@ where
     fn right_child_idx(&self, idx: usize) -> usize {
         self.left_child_idx(idx) + 1
     }
+
+    fn smallest_child_idx(&self, idx: usize) -> usize {
+        //TODO
+		0
+    }
 }
 
 impl<T> Heap<T>
 where
     T: Default + Ord,
 {
-    /// 创建一个新的最小堆
+    /// Create a new MinHeap
     pub fn new_min() -> Self {
         Self::new(|a, b| a < b)
     }
 
-    /// 创建一个新的最大堆
+    /// Create a new MaxHeap
     pub fn new_max() -> Self {
         Self::new(|a, b| a > b)
     }
@@ -106,27 +84,8 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
-        if self.count == 0 {
-            return None;
-        }
-        
-        let result = self.items.swap_remove(1);
-        self.count -= 1;
-        
-        if self.count > 0 {
-            let mut idx = 1;
-            while self.children_present(idx) {
-                let child = self.smallest_child_idx(idx);
-                if (self.comparator)(&self.items[child], &self.items[idx]) {
-                    self.items.swap(child, idx);
-                    idx = child;
-                } else {
-                    break;
-                }
-            }
-        }
-        
-        Some(result)
+        //TODO
+		None
     }
 }
 
